@@ -4,7 +4,11 @@
   "description": "Exercise Tracker",
   "main": "./server/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node .",
+    "server": "nodemon .",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "dependencies": "npm i && npm i --prefix client && npm i --prefix server"
   },
   "author": "Wadeea Kiwan",
   "license": "ISC",
