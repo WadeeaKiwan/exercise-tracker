@@ -70,18 +70,6 @@ router.route('/update/:id').put((req, res) => {
         .catch(err => res.status(400).json({ Error: err }));
     })
     .catch(err => res.status(400).json({ Error: err }));
-
-  // // Build exercise object
-  // const exerciseFields = {};
-
-  // exerciseFields.username = username;
-  // exerciseFields.description = description;
-  // exerciseFields.duration = duration;
-  // exerciseFields.date = date;
-
-  // Exercise.findByIdAndUpdate(req.params.id, { $set: exerciseFields }, { new: true, upsert: true })
-  //   .then(exercise => res.json(exercise))
-  //   .catch(err => res.status(400).json({ Error: err }));
 });
 
 module.exports = router;

@@ -21,7 +21,12 @@ router.route('/add').post((req, res) => {
   newUser
     .save()
     .then(() => res.json({ msg: 'User added!' }))
-    .catch(err => res.status(400).json({ Error: err }));
+    .catch(err => {
+      if (err.code === 11000) {
+        return res.json({ msg: `${username} already exists!` });
+      }
+      res.status(400).json({ Error: err });
+    });
 });
 
 module.exports = router;
