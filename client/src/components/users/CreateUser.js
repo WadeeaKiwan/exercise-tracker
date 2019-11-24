@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 export default class CreateUser extends Component {
@@ -10,7 +11,23 @@ export default class CreateUser extends Component {
 
     this.state = {
       username: '',
+      users: [],
     };
+  }
+
+  componentDidMount() {
+    axios
+      .get('http://localhost:5000/users/')
+      .then(res => {
+        if (res.data.length > 0) {
+          this.setState({
+            users: res.data.map(user => user.username),
+          });
+        }
+      })
+      .catch(err => {
+        console.error(err);
+      });
   }
 
   onChangeUsername = function(e) {
@@ -26,10 +43,14 @@ export default class CreateUser extends Component {
       username: this.state.username,
     };
 
-    axios.post('http://localhost:5000/users/add', user).then(res => console.log(res.data));
-
-    this.setState({
-      username: '',
+    axios.post('http://localhost:5000/users/add', user).then(res => {
+      if (res.data.msg !== `${user.username} already exists!`) {
+        this.setState({
+          username: '',
+          users: [user.username, ...this.state.users],
+        });
+      }
+      console.log(res.data);
     });
   };
 
@@ -53,10 +74,31 @@ export default class CreateUser extends Component {
             <input type='submit' value='Create User' className='btn btn-primary' />
           </div>
         </form>
-        <div>
-          <h3>Users' List</h3>
-          <ul>{}</ul>
-        </div>
+        {this.state.users && (
+          <div>
+            <table className='table'>
+              <thead className='thead-light'>
+                <tr>
+                  <th>Users' List</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {this.state.users.map(username => (
+                  <tr key={username}>
+                    <td>{username}</td>
+                    <td>
+                      <Link className='btn btn-secondary' to={`/edit-exercise/`}>
+                        Edit Username
+                      </Link>{' '}
+                      <button className='btn btn-danger'>Delete User</button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
       </div>
     );
   }
