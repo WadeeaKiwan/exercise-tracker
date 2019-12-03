@@ -17,7 +17,7 @@ export default class CreateUser extends Component {
 
   componentDidMount() {
     axios
-      .get('http://localhost:5000/users/')
+      .get('/users/')
       .then(res => {
         if (res.data.length > 0) {
           this.setState({
@@ -43,7 +43,7 @@ export default class CreateUser extends Component {
       username: this.state.username,
     };
 
-    axios.post('http://localhost:5000/users/add', user).then(res => {
+    axios.post('/users/add', user).then(res => {
       if (res.data.msg !== `${user.username} already exists!`) {
         this.setState({
           username: '',

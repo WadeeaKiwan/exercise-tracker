@@ -86,7 +86,7 @@ export default class EditExercise extends Component {
     };
 
     axios
-      .put(`http://localhost:5000/exercises/update/${this.props.match.params.id}`, exercise)
+      .put(`/exercises/update/${this.props.match.params.id}`, exercise)
       .then(res => console.log(res.data))
       .catch(err => {
         console.error(err);
