@@ -1,6 +1,6 @@
 # Exercise Tracker
 
-This is a MERN App to add/edit/delete exercises of a user
+This is a MERN App to add/edit/delete exercises of a user using Node.js, Express, React and MongoDB along with Class-based Components and constructors.
 
 # To Start:
 
@@ -8,4 +8,16 @@ This is a MERN App to add/edit/delete exercises of a user
 
 ```
 npm run dependencies
+```
+
+## Add your .env file in the root of the app including your connection uri for mongodb:
+
+```
+ATLAS_URI=<your mongodb uri>
+```
+
+## Run the following command to start the app in the development mode:
+
+```
+npm run dev
 ```
