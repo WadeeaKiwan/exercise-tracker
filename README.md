@@ -21,3 +21,7 @@ ATLAS_URI=<your mongodb uri>
 ```
 npm run dev
 ```
+
+## Please, visit the following link to try the app:
+
+https://exer-track.herokuapp.com/
